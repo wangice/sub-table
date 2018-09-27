@@ -1,6 +1,10 @@
 package com.ice.sub.library.table.service.impl;
 
-import com.ice.sub.library.table.dao.UserInfoDao;
+import com.ice.sub.library.table.dao.mybatis.UserInfoDao;
+import com.ice.sub.library.table.dao.proxy.BaseUserInfoProxyDao;
+import com.ice.sub.library.table.dao.proxy.ExtraUserInfoProxyDao;
+import com.ice.sub.library.table.entities.BaseUserInfo;
+import com.ice.sub.library.table.entities.ExtraUserInfo;
 import com.ice.sub.library.table.entities.UserInfo;
 import com.ice.sub.library.table.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +20,20 @@ public class UserInfoServiceImpl implements UserInfoService {
   @Autowired
   private UserInfoDao userInfoDao;
 
+  @Autowired
+  private BaseUserInfoProxyDao baseUserInfoProxyDao;
+
+  @Autowired
+  private ExtraUserInfoProxyDao extraUserInfoProxyDao;
+
   @Override
   public int saveUserInfo(UserInfo userInfo) {
-    return userInfoDao.insertUserInfo(userInfo);
+    userInfoDao.insertUserInfo(userInfo);
+    BaseUserInfo baseUserInfo = new BaseUserInfo(userInfo);
+    ExtraUserInfo extraUserInfo = new ExtraUserInfo(userInfo);
+    baseUserInfoProxyDao.insertBaseUserInfo(baseUserInfo);
+    extraUserInfoProxyDao.insertExtraUserInfo(extraUserInfo);
+    return 1;
   }
 
   @Override

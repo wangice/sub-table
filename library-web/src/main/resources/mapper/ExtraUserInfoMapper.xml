@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ice.sub.library.table.dao.proxy.ExtraUserInfoProxyDao">
+  <resultMap id="BaseResultMap" type="com.ice.sub.library.table.entities.ExtraUserInfo">
+    <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+    <result column="address" jdbcType="VARCHAR" property="address"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="introduction" jdbcType="VARCHAR" property="introduction"/>
+    <result column="age" jdbcType="SMALLINT" property="age"/>
+    <result column="birth_date" jdbcType="TIMESTAMP" property="birthDate"/>
+    <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+    <result column="sex" jdbcType="TINYINT" property="sex"/>
+    <result column="career" jdbcType="VARCHAR" property="career"/>
+    <result column="income" jdbcType="DOUBLE" property="income"/>
+    <result column="constellation" jdbcType="VARCHAR" property="constellation"/>
+    <result column="height" jdbcType="REAL" property="height"/>
+    <result column="body_weight" jdbcType="REAL" property="bodyWeight"/>
+  </resultMap>
+  <insert id="insertExtraUserInfo" parameterType="com.ice.sub.library.table.entities.ExtraUserInfo">
+    insert into tb_extra_user_info (user_id, address, create_time,
+      introduction, age, birth_date,
+      avatar, sex, career,
+      income, constellation, height,
+      body_weight)
+    values (#{userId,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{introduction,jdbcType=VARCHAR}, #{age,jdbcType=SMALLINT}, #{birthDate,jdbcType=TIMESTAMP},
+      #{avatar,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{career,jdbcType=VARCHAR},
+      #{income,jdbcType=DOUBLE}, #{constellation,jdbcType=VARCHAR}, #{height,jdbcType=REAL},
+      #{bodyWeight,jdbcType=REAL})
+  </insert>
+  <insert id="insertExtraUserInfoSelective" parameterType="com.ice.sub.library.table.entities.ExtraUserInfo">
+    insert into tb_extra_user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="birthDate != null">
+        birth_date,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="career != null">
+        career,
+      </if>
+      <if test="income != null">
+        income,
+      </if>
+      <if test="constellation != null">
+        constellation,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="bodyWeight != null">
+        body_weight,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=SMALLINT},
+      </if>
+      <if test="birthDate != null">
+        #{birthDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="career != null">
+        #{career,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null">
+        #{income,jdbcType=DOUBLE},
+      </if>
+      <if test="constellation != null">
+        #{constellation,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=REAL},
+      </if>
+      <if test="bodyWeight != null">
+        #{bodyWeight,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateExtraUserInfoSelective"
+    parameterType="com.ice.sub.library.table.entities.ExtraUserInfo">
+    update tb_extra_user_info1
+    <set>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=SMALLINT},
+      </if>
+      <if test="birthDate != null">
+        birth_date = #{birthDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="career != null">
+        career = #{career,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null">
+        income = #{income,jdbcType=DOUBLE},
+      </if>
+      <if test="constellation != null">
+        constellation = #{constellation,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=REAL},
+      </if>
+      <if test="bodyWeight != null">
+        body_weight = #{bodyWeight,jdbcType=REAL},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateExtraUserInfo" parameterType="com.ice.sub.library.table.entities.ExtraUserInfo">
+    update tb_extra_user_info1
+    set address = #{address,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      age = #{age,jdbcType=SMALLINT},
+      birth_date = #{birthDate,jdbcType=TIMESTAMP},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      career = #{career,jdbcType=VARCHAR},
+      income = #{income,jdbcType=DOUBLE},
+      constellation = #{constellation,jdbcType=VARCHAR},
+      height = #{height,jdbcType=REAL},
+      body_weight = #{bodyWeight,jdbcType=REAL}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

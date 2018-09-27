@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -27,7 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages = "com.ice.sub.library.table.dao", sqlSessionTemplateRef = "sqlSessionTemplate")
+@MapperScan(basePackages = "com.ice.sub.library.table.dao.mybatis", sqlSessionTemplateRef = "sqlSessionTemplate")
 public class MyBatisConfig {
 
   private static final Logger logger = LoggerFactory.getLogger(MyBatisConfig.class);
@@ -35,9 +34,6 @@ public class MyBatisConfig {
 
   @Autowired
   private MybatisProperties bosMybatisProperties;
-
-  @Autowired
-  private ProxyMybatisProperties proxyMybatisProperties;
 
   @Autowired
   private DataSourceProperties properties;
@@ -68,8 +64,6 @@ public class MyBatisConfig {
     ds.setConnectionProperties(this.properties.getConnectionProperties());
     return ds;
   }
-
-
 
 
   @Bean(name = "sqlSessionFactory")

@@ -1,4 +1,4 @@
-package com.ice.sub.library.table.dao;
+package com.ice.sub.library.table.dao.mybatis;
 
 import com.ice.sub.library.table.entities.UserInfo;
 import org.apache.ibatis.annotations.Param;
