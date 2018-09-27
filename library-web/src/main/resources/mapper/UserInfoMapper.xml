@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ice.sub.library.table.dao.UserInfoDao">
+
+  <!--auto generated Code-->
+  <resultMap id="AllColumnMap" type="com.ice.sub.library.table.entities.UserInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="identity" jdbcType="VARCHAR" property="identity" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="freezing_time" jdbcType="TIMESTAMP" property="freezingTime" />
+    <result column="age" jdbcType="SMALLINT" property="age" />
+    <result column="birth_date" jdbcType="TIMESTAMP" property="birthDate" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="career" jdbcType="VARCHAR" property="career" />
+    <result column="income" jdbcType="DOUBLE" property="income" />
+    <result column="constellation" jdbcType="VARCHAR" property="constellation" />
+    <result column="height" jdbcType="REAL" property="height" />
+    <result column="body_weight" jdbcType="REAL" property="bodyWeight" />
+  </resultMap>
+
+  <!--auto generated Code-->
+  <sql id="Base_Column_List">
+    id, user_id, account, password, `user_name`, identity, `real_name`, introduction, email,
+    phone_number, address, create_time, last_login_time, status, freezing_time, age,
+    birth_date, avatar, sex, career, income, constellation, height, body_weight
+  </sql>
+
+  <!--auto generated Code-->
+  <insert id="insertUserInfo">
+    INSERT INTO tb_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pojo.userId != null">user_id,</if>
+      <if test="pojo.account != null">account,</if>
+      <if test="pojo.password != null">password,</if>
+      <if test="pojo.userName != null">user_name,</if>
+      <if test="pojo.identity != null">identity,</if>
+      <if test="pojo.realName != null">real_name,</if>
+      <if test="pojo.introduction != null">introduction,</if>
+      <if test="pojo.email != null">email,</if>
+      <if test="pojo.phoneNumber != null">phone_number,</if>
+      <if test="pojo.address != null">address,</if>
+      <if test="pojo.createTime != null">create_time,</if>
+      <if test="pojo.lastLoginTime != null">last_login_time,</if>
+      <if test="pojo.freezingTime != null">freezing_time,</if>
+      <if test="pojo.age != null">age,</if>
+      <if test="pojo.birthDate != null">birth_date,</if>
+      <if test="pojo.avatar != null">avatar,</if>
+      <if test="pojo.sex != null">sex,</if>
+      <if test="pojo.career != null">career,</if>
+      <if test="pojo.income != null">income,</if>
+      <if test="pojo.constellation != null">constellation,</if>
+      <if test="pojo.height != null">height,</if>
+      <if test="pojo.bodyWeight != null">body_weight,</if>
+    </trim>
+    VALUES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pojo.userId != null">#{pojo.userId},</if>
+      <if test="pojo.account != null">#{pojo.account},</if>
+      <if test="pojo.password != null">#{pojo.password},</if>
+      <if test="pojo.userName != null">#{pojo.userName},</if>
+      <if test="pojo.identity != null">#{pojo.identity},</if>
+      <if test="pojo.realName != null">#{pojo.realName},</if>
+      <if test="pojo.introduction != null">#{pojo.introduction},</if>
+      <if test="pojo.email != null">#{pojo.email},</if>
+      <if test="pojo.phoneNumber != null">#{pojo.phoneNumber},</if>
+      <if test="pojo.address != null">#{pojo.address},</if>
+      <if test="pojo.createTime != null">#{pojo.createTime},</if>
+      <if test="pojo.lastLoginTime != null">#{pojo.lastLoginTime},</if>
+      <if test="pojo.freezingTime != null">#{pojo.freezingTime},</if>
+      <if test="pojo.age != null">#{pojo.age},</if>
+      <if test="pojo.birthDate != null">#{pojo.birthDate},</if>
+      <if test="pojo.avatar != null">#{pojo.avatar},</if>
+      <if test="pojo.sex != null">#{pojo.sex},</if>
+      <if test="pojo.career != null">#{pojo.career},</if>
+      <if test="pojo.income != null">#{pojo.income},</if>
+      <if test="pojo.constellation != null">#{pojo.constellation},</if>
+      <if test="pojo.height != null">#{pojo.height},</if>
+      <if test="pojo.bodyWeight != null">#{pojo.bodyWeight},</if>
+    </trim>
+  </insert>
+
+  <!--auto generated Code-->
+  <insert id="insertList">
+    INSERT INTO tb_user(
+    <include refid="Base_Column_List"/>
+    )VALUES
+    <foreach collection="pojos" item="pojo" index="index" separator=",">
+      (#{pojo.id},
+      #{pojo.userId},
+      #{pojo.account},
+      #{pojo.password},
+      #{pojo.userName},
+      #{pojo.identity},
+      #{pojo.realName},
+      #{pojo.introduction},
+      #{pojo.email},
+      #{pojo.phoneNumber},
+      #{pojo.address},
+      #{pojo.createTime},
+      #{pojo.lastLoginTime},
+      #{pojo.freezingTime},
+      #{pojo.age},
+      #{pojo.birthDate},
+      #{pojo.avatar},
+      #{pojo.sex},
+      #{pojo.career},
+      #{pojo.income},
+      #{pojo.constellation},
+      #{pojo.height},
+      #{pojo.bodyWeight})
+    </foreach>
+  </insert>
+
+  <!--auto generated Code-->
+  <update id="update">
+    UPDATE tb_user
+    <set>
+      <if test="pojo.account != null">account = #{pojo.account},</if>
+      <if test="pojo.password != null">password = #{pojo.password},</if>
+      <if test="pojo.userName != null">user_name = #{pojo.userName},</if>
+      <if test="pojo.identity != null">identity = #{pojo.identity},</if>
+      <if test="pojo.realName != null">real_name = #{pojo.realName},</if>
+      <if test="pojo.introduction != null">introduction = #{pojo.introduction},</if>
+      <if test="pojo.email != null">email = #{pojo.email},</if>
+      <if test="pojo.phoneNumber != null">phone_number = #{pojo.phoneNumber},</if>
+      <if test="pojo.address != null">address = #{pojo.address},</if>
+      <if test="pojo.createTime != null">create_time = #{pojo.createTime},</if>
+      <if test="pojo.lastLoginTime != null">last_login_time = #{pojo.lastLoginTime},</if>
+      <if test="pojo.freezingTime != null">freezing_time = #{pojo.freezingTime},</if>
+      <if test="pojo.age != null">age = #{pojo.age},</if>
+      <if test="pojo.birthDate != null">birth_date = #{pojo.birthDate},</if>
+      <if test="pojo.avatar != null">avatar = #{pojo.avatar},</if>
+      <if test="pojo.sex != null">sex = #{pojo.sex},</if>
+      <if test="pojo.career != null">career = #{pojo.career},</if>
+      <if test="pojo.income != null">income = #{pojo.income},</if>
+      <if test="pojo.constellation != null">constellation = #{pojo.constellation},</if>
+      <if test="pojo.height != null">height = #{pojo.height},</if>
+      <if test="pojo.bodyWeight != null">body_weight = #{pojo.bodyWeight}</if>
+    </set>
+    WHERE account = #{pojo.account}
+  </update>
+
+  <!--auto generated Code-->
+  <delete id="delete">
+        DELETE FROM tb_user where account = #{pojo.account}
+    </delete>
+
+  <!--通过userId查询用户-->
+  <select id="selectUserInfo" parameterType="com.ice.sub.library.table.entities.UserInfo"
+    resultMap="AllColumnMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_user
+    where account = #{account}
+  </select>
+
+  <!--更新用户状态-->
+  <update id="updateStatus" parameterType="com.ice.sub.library.table.entities.UserInfo">
+     update tb_user set = #{status}
+     where account = #{account}
+  </update>
+
+</mapper>
