@@ -94,7 +94,9 @@
     <Loggers>
         <logger name="org.springframework" level="INFO"/>
         <logger name="org.apache.curator" level="INFO"/>
-        <logger name="org.apache.rocketmq" level="WARN"/>
+        <logger name="RocketmqRemoting" level="WARN"/>
+        <logger name="RocketmqClient" level="WARN"/>
+        <logger name="HikariPool" level="INFO"/>
         <logger name="io.netty" level="INFO"/>
         <root level="all">
             <appender-ref ref="Console"/>

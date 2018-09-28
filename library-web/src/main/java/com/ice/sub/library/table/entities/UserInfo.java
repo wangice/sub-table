@@ -1,6 +1,5 @@
 package com.ice.sub.library.table.entities;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 /**
@@ -11,7 +10,7 @@ public class UserInfo {
 
   private Integer id;
 
-  private BigInteger userId;
+  private Long userId;
 
   private String account;
 
@@ -65,11 +64,11 @@ public class UserInfo {
     this.id = id;
   }
 
-  public BigInteger getUserId() {
+  public Long getUserId() {
     return userId;
   }
 
-  public void setUserId(BigInteger userId) {
+  public void setUserId(Long userId) {
     this.userId = userId;
   }
 

@@ -127,7 +127,6 @@
   <update id="update">
     UPDATE tb_user
     <set>
-      <if test="pojo.account != null">account = #{pojo.account},</if>
       <if test="pojo.password != null">password = #{pojo.password},</if>
       <if test="pojo.userName != null">user_name = #{pojo.userName},</if>
       <if test="pojo.identity != null">identity = #{pojo.identity},</if>
@@ -149,12 +148,12 @@
       <if test="pojo.height != null">height = #{pojo.height},</if>
       <if test="pojo.bodyWeight != null">body_weight = #{pojo.bodyWeight}</if>
     </set>
-    WHERE account = #{pojo.account}
+    WHERE user_id = #{pojo.userId}
   </update>
 
   <!--auto generated Code-->
   <delete id="delete">
-        DELETE FROM tb_user where account = #{pojo.account}
+        DELETE FROM tb_user where user_id = #{pojo.userId}
     </delete>
 
   <!--通过userId查询用户-->
@@ -163,13 +162,13 @@
     select
     <include refid="Base_Column_List"/>
     from tb_user
-    where account = #{account}
+    where user_id = #{userId}
   </select>
 
   <!--更新用户状态-->
   <update id="updateStatus" parameterType="com.ice.sub.library.table.entities.UserInfo">
-     update tb_user set = #{status}
-     where account = #{account}
+     update tb_user set status = #{status}
+     where user_id = #{userId}
   </update>
 
 </mapper>

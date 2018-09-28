@@ -6,11 +6,9 @@ import com.ice.sub.library.table.core.Rsp.RspEnum;
 import com.ice.sub.library.table.entities.UserInfo;
 import com.ice.sub.library.table.rsp.RspUserInfo;
 import com.ice.sub.library.table.service.UserInfoService;
-import java.math.BigInteger;
 import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,7 +32,7 @@ public class UserController {
    */
   @PostMapping(value = "/user")
   public Rsp addUserInfo(@RequestBody UserInfo userInfo, HttpServletRequest request) {
-    if (StringUtils.isBlank(userInfo.getAccount())) {
+    if (userInfo.getUserId() != null) {
       return Rsp.transEnd(RspEnum.ERR_MISSING_PARAM_ERROR);
     }
     UserInfo user = userInfoService.selectUser(userInfo);
@@ -43,7 +41,7 @@ public class UserController {
     }
     Date now = new Date();
     String time = ODateu.parseDateyyyyMMddHHmmssms2(now);
-    userInfo.setUserId(BigInteger.valueOf(Long.parseLong(time)));
+    userInfo.setUserId(Long.parseLong(time));
     userInfo.setCreateTime(now);
     userInfo.setStatus((byte) 0);
     int success = userInfoService.saveUserInfo(userInfo);
@@ -56,10 +54,10 @@ public class UserController {
   /**
    * 查询用户信息.
    */
-  @GetMapping(value = "/user/{account}")
-  public Rsp queryUserInfo(@PathVariable("account") String account) {
+  @GetMapping(value = "/user/{userId}")
+  public Rsp queryUserInfo(@PathVariable("userId") Long userId) {
     UserInfo userInfo = new UserInfo();
-    userInfo.setAccount(account);
+    userInfo.setUserId(userId);
     UserInfo user = userInfoService.selectUser(userInfo);
     if (user == null) {
       return Rsp.transEnd(RspEnum.ERR_NOT_FOUND_USER_ERROR);
@@ -70,10 +68,10 @@ public class UserController {
   /**
    * 修改用户信息.
    */
-  @PostMapping("/user/{account}")
-  public Rsp updateUserInfo(@PathVariable("account") String account,
+  @PostMapping("/user/{userId}")
+  public Rsp updateUserInfo(@PathVariable("userId") Long userId,
       @RequestBody UserInfo userInfo) {
-    userInfo.setAccount(account);
+    userInfo.setUserId(userId);
     UserInfo user = userInfoService.selectUser(userInfo);
     if (user == null) {
       return Rsp.transEnd(RspEnum.ERR_NOT_FOUND_USER_ERROR);
@@ -89,8 +87,8 @@ public class UserController {
   /**
    * 修改状态.
    */
-  @PostMapping("/user/{account}/{status}")
-  public Rsp updateUserStatus(@PathVariable("account") String account,
+  @PostMapping("/user/{userId}/{status}")
+  public Rsp updateUserStatus(@PathVariable("userId") String account,
       @PathVariable("status") int status) {
     UserInfo userInfo = new UserInfo();
     userInfo.setAccount(account);
