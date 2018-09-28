@@ -1,10 +1,11 @@
 package com.ice.sub.library.table.entities;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 public class ExtraUserInfo {
 
-  private String userId;
+  private BigInteger userId;
   private String address;
   private Date createTime;
   private String introduction;
@@ -38,11 +39,11 @@ public class ExtraUserInfo {
     this.bodyWeight = userInfo.getBodyWeight();
   }
 
-  public String getUserId() {
+  public BigInteger getUserId() {
     return userId;
   }
 
-  public void setUserId(String userId) {
+  public void setUserId(BigInteger userId) {
     this.userId = userId;
   }
 

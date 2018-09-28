@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ice.sub.library.table.dao.proxy.ExtraUserInfoProxyDao">
   <resultMap id="BaseResultMap" type="com.ice.sub.library.table.entities.ExtraUserInfo">
-    <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+    <id column="user_id" jdbcType="BIGINT" property="userId"/>
     <result column="address" jdbcType="VARCHAR" property="address"/>
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     <result column="introduction" jdbcType="VARCHAR" property="introduction"/>
@@ -23,7 +23,7 @@
       avatar, sex, career,
       income, constellation, height,
       body_weight)
-    values (#{userId,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+    values (#{userId,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
       #{introduction,jdbcType=VARCHAR}, #{age,jdbcType=SMALLINT}, #{birthDate,jdbcType=TIMESTAMP},
       #{avatar,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, #{career,jdbcType=VARCHAR},
       #{income,jdbcType=DOUBLE}, #{constellation,jdbcType=VARCHAR}, #{height,jdbcType=REAL},
@@ -74,7 +74,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
-        #{userId,jdbcType=VARCHAR},
+        #{userId,jdbcType=BIGINT},
       </if>
       <if test="address != null">
         #{address,jdbcType=VARCHAR},
@@ -117,7 +117,7 @@
 
   <update id="updateExtraUserInfoSelective"
     parameterType="com.ice.sub.library.table.entities.ExtraUserInfo">
-    update tb_extra_user_info1
+    update tb_extra_user_info
     <set>
       <if test="address != null">
         address = #{address,jdbcType=VARCHAR},
@@ -156,10 +156,10 @@
         body_weight = #{bodyWeight,jdbcType=REAL},
       </if>
     </set>
-    where user_id = #{userId,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=BIGINT}
   </update>
   <update id="updateExtraUserInfo" parameterType="com.ice.sub.library.table.entities.ExtraUserInfo">
-    update tb_extra_user_info1
+    update tb_extra_user_info
     set address = #{address,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       introduction = #{introduction,jdbcType=VARCHAR},
@@ -172,6 +172,6 @@
       constellation = #{constellation,jdbcType=VARCHAR},
       height = #{height,jdbcType=REAL},
       body_weight = #{bodyWeight,jdbcType=REAL}
-    where user_id = #{userId,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=BIGINT}
   </update>
 </mapper>

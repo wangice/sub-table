@@ -6,6 +6,7 @@ import com.ice.sub.library.table.core.Rsp.RspEnum;
 import com.ice.sub.library.table.entities.UserInfo;
 import com.ice.sub.library.table.rsp.RspUserInfo;
 import com.ice.sub.library.table.service.UserInfoService;
+import java.math.BigInteger;
 import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -42,7 +43,7 @@ public class UserController {
     }
     Date now = new Date();
     String time = ODateu.parseDateyyyyMMddHHmmssms2(now);
-    userInfo.setUserId("ice" + time);
+    userInfo.setUserId(BigInteger.valueOf(Long.parseLong(time)));
     userInfo.setCreateTime(now);
     userInfo.setStatus((byte) 0);
     int success = userInfoService.saveUserInfo(userInfo);
