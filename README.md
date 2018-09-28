@@ -21,3 +21,12 @@ sharding-proxy是中间层代理，可以将其他当做成mysql，通过网络�
 启动消费消息的程序，将对数据库的修改和删除操作对现有数据进行操作一遍。最后在启动验证
 数据完整性程序。
 
+### bin-log日志读取
+需要线上的程序开启binlog，并设置SET binlog_format=STATEMENT,本程序使用STATEMENT,直接获取sql语句
+并分析之后，将程序
+
+
+### mongodb发送update insert更新语句
+
+
+
