@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ice.sub.library.table.dao.mybatis.UserInfoDao">
+
+  <!--auto generated Code-->
+  <resultMap id="AllColumnMap" type="com.ice.sub.library.table.entities.UserInfo">
+    <result column="user_id" jdbcType="BIGINT" property="userId"/>
+    <result column="account" jdbcType="VARCHAR" property="account"/>
+    <result column="password" jdbcType="VARCHAR" property="password"/>
+    <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+    <result column="identity" jdbcType="VARCHAR" property="identity"/>
+    <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+    <result column="introduction" jdbcType="VARCHAR" property="introduction"/>
+    <result column="email" jdbcType="VARCHAR" property="email"/>
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber"/>
+    <result column="address" jdbcType="VARCHAR" property="address"/>
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+    <result column="status" jdbcType="TINYINT" property="status"/>
+    <result column="freezing_time" jdbcType="TIMESTAMP" property="freezingTime"/>
+    <result column="age" jdbcType="SMALLINT" property="age"/>
+    <result column="birth_date" jdbcType="TIMESTAMP" property="birthDate"/>
+    <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+    <result column="sex" jdbcType="TINYINT" property="sex"/>
+    <result column="career" jdbcType="VARCHAR" property="career"/>
+    <result column="income" jdbcType="DOUBLE" property="income"/>
+    <result column="constellation" jdbcType="VARCHAR" property="constellation"/>
+    <result column="height" jdbcType="REAL" property="height"/>
+    <result column="body_weight" jdbcType="REAL" property="bodyWeight"/>
+  </resultMap>
+
+  <!--auto generated Code-->
+  <sql id="Base_Column_List">
+    id, user_id, account, password, `user_name`, identity, `real_name`, introduction, email,
+    phone_number, address, create_time, last_login_time, status, freezing_time, age,
+    birth_date, avatar, sex, career, income, constellation, height, body_weight
+  </sql>
+
+  <!--通过userId查询用户-->
+  <select id="selectUserInfo" parameterType="com.ice.sub.library.table.entities.UserInfo"
+    resultMap="AllColumnMap">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_user
+    where user_id = #{userId}
+  </select>
+
+
+</mapper>

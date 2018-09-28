@@ -13,6 +13,7 @@
     <module>library-web</module>
     <module>operator-mq</module>
     <module>sql-migrate</module>
+    <module>sql-check</module>
   </modules>
 
   <properties>
