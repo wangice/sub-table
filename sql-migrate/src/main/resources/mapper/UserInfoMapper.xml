@@ -37,13 +37,23 @@
     birth_date, avatar, sex, career, income, constellation, height, body_weight
   </sql>
 
-  <!--通过userId查询用户-->
-  <select id="selectUserInfo" parameterType="com.ice.sub.library.table.entities.UserInfo"
-    resultMap="AllColumnMap">
+  <!--查询小于等于userId的数量-->
+  <select id="countUserInfo" resultType="java.lang.Long">
+    select count(*) from tb_user
+    where user_id &lt;= #{userId}
+  </select>
+
+  <!--分页查询用户数据-->
+  <select id="selectUserInfo" resultMap="AllColumnMap">
     select
     <include refid="Base_Column_List"/>
     from tb_user
-    where user_id = #{userId}
+    where user_id &lt;= #{userId}
+    <if test=" index != null">
+      and user_id &gt; #{index}
+    </if>
+    order by user_id asc
+    limit 0,100
   </select>
 
 
