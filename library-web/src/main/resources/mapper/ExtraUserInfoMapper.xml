@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ice.sub.library.table.dao.proxy.ExtraUserInfoProxyDao">
-  <resultMap id="BaseResultMap" type="com.ice.sub.library.table.entities.ExtraUserInfo">
+<mapper namespace="com.ice.sub.library.com.ice.sub.library.migrate.table.table.dao.proxy.ExtraUserInfoProxyDao">
+  <resultMap id="BaseResultMap" type="com.ice.sub.library.com.ice.sub.library.migrate.table.table.entities.ExtraUserInfo">
     <id column="user_id" jdbcType="BIGINT" property="userId"/>
     <result column="address" jdbcType="VARCHAR" property="address"/>
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
@@ -17,7 +17,7 @@
     <result column="height" jdbcType="REAL" property="height"/>
     <result column="body_weight" jdbcType="REAL" property="bodyWeight"/>
   </resultMap>
-  <insert id="insertExtraUserInfo" parameterType="com.ice.sub.library.table.entities.ExtraUserInfo">
+  <insert id="insertExtraUserInfo" parameterType="com.ice.sub.library.com.ice.sub.library.migrate.table.table.entities.ExtraUserInfo">
     insert into tb_extra_user_info (user_id, address, create_time,
       introduction, age, birth_date,
       avatar, sex, career,
@@ -29,7 +29,7 @@
       #{income,jdbcType=DOUBLE}, #{constellation,jdbcType=VARCHAR}, #{height,jdbcType=REAL},
       #{bodyWeight,jdbcType=REAL})
   </insert>
-  <insert id="insertExtraUserInfoSelective" parameterType="com.ice.sub.library.table.entities.ExtraUserInfo">
+  <insert id="insertExtraUserInfoSelective" parameterType="com.ice.sub.library.com.ice.sub.library.migrate.table.table.entities.ExtraUserInfo">
     insert into tb_extra_user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -116,7 +116,7 @@
   </insert>
 
   <update id="updateExtraUserInfoSelective"
-    parameterType="com.ice.sub.library.table.entities.ExtraUserInfo">
+    parameterType="com.ice.sub.library.com.ice.sub.library.migrate.table.table.entities.ExtraUserInfo">
     update tb_extra_user_info
     <set>
       <if test="address != null">
@@ -158,7 +158,7 @@
     </set>
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
-  <update id="updateExtraUserInfo" parameterType="com.ice.sub.library.table.entities.ExtraUserInfo">
+  <update id="updateExtraUserInfo" parameterType="com.ice.sub.library.com.ice.sub.library.migrate.table.table.entities.ExtraUserInfo">
     update tb_extra_user_info
     set address = #{address,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},

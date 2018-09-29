@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ice.sub.library.table.dao.mybatis.UserInfoDao">
+<mapper namespace="com.ice.sub.library.check.dao.mybatis.UserInfoDao">
 
   <!--auto generated Code-->
-  <resultMap id="AllColumnMap" type="com.ice.sub.library.table.entities.UserInfo">
+  <resultMap id="AllColumnMap" type="com.ice.sub.library.check.entities.UserInfo">
     <result column="user_id" jdbcType="BIGINT" property="userId"/>
     <result column="account" jdbcType="VARCHAR" property="account"/>
     <result column="password" jdbcType="VARCHAR" property="password"/>
@@ -37,13 +37,18 @@
     birth_date, avatar, sex, career, income, constellation, height, body_weight
   </sql>
 
-  <!--通过userId查询用户-->
-  <select id="selectUserInfo" parameterType="com.ice.sub.library.table.entities.UserInfo"
-    resultMap="AllColumnMap">
+  <!--分页查询用户数据-->
+  <select id="selectUserInfo" resultMap="AllColumnMap">
     select
     <include refid="Base_Column_List"/>
     from tb_user
-    where user_id = #{userId}
+    <where>
+      <if test=" userId != null">
+        and user_id &gt; #{userId}
+      </if>
+    </where>
+    order by user_id asc
+    limit 0,100
   </select>
 
 

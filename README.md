@@ -1,4 +1,4 @@
-# sub-library-table
+# sub-library-com.ice.sub.library.table.table
 
 ### sharding-proxy
 使用中间层方式来替代程序中进行分库分表的操作。

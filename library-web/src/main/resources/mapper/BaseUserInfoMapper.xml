@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ice.sub.library.table.dao.proxy.BaseUserInfoProxyDao">
-  <resultMap id="BaseResultMap" type="com.ice.sub.library.table.entities.BaseUserInfo">
+<mapper namespace="com.ice.sub.library.com.ice.sub.library.migrate.table.table.dao.proxy.BaseUserInfoProxyDao">
+  <resultMap id="BaseResultMap" type="com.ice.sub.library.com.ice.sub.library.migrate.table.table.entities.BaseUserInfo">
     <id column="user_id" jdbcType="BIGINT" property="userId"/>
     <result column="account" jdbcType="VARCHAR" property="account"/>
     <result column="password" jdbcType="VARCHAR" property="password"/>
@@ -21,7 +21,7 @@
     address, status, freezing_time, last_login_time
   </sql>
 
-  <insert id="insertBaseUserInfo" parameterType="com.ice.sub.library.table.entities.BaseUserInfo">
+  <insert id="insertBaseUserInfo" parameterType="com.ice.sub.library.com.ice.sub.library.migrate.table.table.entities.BaseUserInfo">
     insert into tb_base_user_info (user_id, account,
       password, user_name, identity, 
       real_name, email, phone_number, 
@@ -34,7 +34,7 @@
       #{lastLoginTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertBaseUserInfoSelective"
-    parameterType="com.ice.sub.library.table.entities.BaseUserInfo">
+    parameterType="com.ice.sub.library.com.ice.sub.library.migrate.table.table.entities.BaseUserInfo">
     insert into tb_base_user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -114,7 +114,7 @@
     </trim>
   </insert>
   <update id="updateBaseUserInfoSelective"
-    parameterType="com.ice.sub.library.table.entities.BaseUserInfo">
+    parameterType="com.ice.sub.library.com.ice.sub.library.migrate.table.table.entities.BaseUserInfo">
     update tb_base_user_info
     <set>
       <if test="account != null">
@@ -153,7 +153,7 @@
     </set>
     where  user_id = #{userId,jdbcType=BIGINT},
   </update>
-  <update id="updateBaseUserInfo" parameterType="com.ice.sub.library.table.entities.BaseUserInfo">
+  <update id="updateBaseUserInfo" parameterType="com.ice.sub.library.com.ice.sub.library.migrate.table.table.entities.BaseUserInfo">
     update tb_base_user_info
     set account = #{account,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
