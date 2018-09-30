@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
  * @author: ice
  * @create on:2018-04-12 23:25
  */
-public class ODateu {
+public class DateUtil {
 
-  private static final Logger logger = LoggerFactory.getLogger(ODateu.class);
+  private static final Logger logger = LoggerFactory.getLogger(DateUtil.class);
 
   public static final long SECOND = 1 * 1000;
   public static final long MINUTE = 60 * SECOND;
@@ -180,70 +180,70 @@ public class ODateu {
    * 返回格式: yyyy-MM-dd.
    */
   public static final String parseDateyyyy_MM_dd(Date date) {
-    return ODateu.parse(new SimpleDateFormat("yyyy-MM-dd"), date);
+    return DateUtil.parse(new SimpleDateFormat("yyyy-MM-dd"), date);
   }
 
   /**
    * 返回格式: yyyy-MM.
    */
   public static final String parseDateyyyy_MM(Date date) {
-    return ODateu.parse(new SimpleDateFormat("yyyy-MM"), date);
+    return DateUtil.parse(new SimpleDateFormat("yyyy-MM"), date);
   }
 
   /**
    * 返回格式:yyyy-MM-dd HH:mm:ss.
    */
   public static final String parseDateyyyyMMddHHmmss(Date date) {
-    return ODateu.parse(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"), date);
+    return DateUtil.parse(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"), date);
   }
 
   /**
    * 返回格式:yyyy/MM/dd HH:mm.
    */
   public static final String parseDateyyyyMMddHHmm2(Date date) {
-    return ODateu.parse(new SimpleDateFormat("yyyy/MM/dd HH:mm"), date);
+    return DateUtil.parse(new SimpleDateFormat("yyyy/MM/dd HH:mm"), date);
   }
 
   /**
    * 返回格式:yyyyMMdd.
    */
   public static final String parseDateyyyyMMdd(Date date) {
-    return ODateu.parse(new SimpleDateFormat("yyyyMMdd"), date);
+    return DateUtil.parse(new SimpleDateFormat("yyyyMMdd"), date);
   }
 
   /**
    * 返回格式:yyyyMMddHH.
    */
   public static final String parseDateyyyyMMddHH(Date date) {
-    return ODateu.parse(new SimpleDateFormat("yyyyMMddHH"), date);
+    return DateUtil.parse(new SimpleDateFormat("yyyyMMddHH"), date);
   }
 
   /**
    * 返回格式:yyyyMMddHHmmss.
    */
   public static final String parseDateyyyyMMddHHmmss2(Date date) {
-    return ODateu.parse(new SimpleDateFormat("yyyyMMddHHmmss"), date);
+    return DateUtil.parse(new SimpleDateFormat("yyyyMMddHHmmss"), date);
   }
 
   /**
    * 返回格式:yyyyMMddHHmm.
    */
   public static final String parseDateyyyyMMddHHmm(Date date) {
-    return ODateu.parse(new SimpleDateFormat("yyyyMMddHHmm"), date);
+    return DateUtil.parse(new SimpleDateFormat("yyyyMMddHHmm"), date);
   }
 
   /**
    * 返回格式:MMddHHmmss.
    */
   public static final String parseDateMMddHHmmss(Date date) {
-    return ODateu.parse(new SimpleDateFormat("MMddHHmmss"), date);
+    return DateUtil.parse(new SimpleDateFormat("MMddHHmmss"), date);
   }
 
   /**
    * 返回格式:HH:mm:ss.
    */
   public static final String parseDateHHmmss(Date date) {
-    return ODateu.parse(new SimpleDateFormat("HH:mm:ss"), date);
+    return DateUtil.parse(new SimpleDateFormat("HH:mm:ss"), date);
   }
 
   /**
@@ -251,7 +251,7 @@ public class ODateu {
    */
   public static final String parseDateHHmmssms(Date date) {
     long ms = date.getTime() % 1000;
-    return ODateu.parse(new SimpleDateFormat("HH:mm:ss"), date) + "."
+    return DateUtil.parse(new SimpleDateFormat("HH:mm:ss"), date) + "."
         + (ms > 99 ? ms : (ms > 9 ? ("0" + ms) : ("00" + ms)));
   }
 
@@ -260,7 +260,7 @@ public class ODateu {
    */
   public static final String parseDateyyyyMMddHHmmssms(Date date) {
     long ms = date.getTime() % 1000;
-    return ODateu.parse(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"), date) + "."
+    return DateUtil.parse(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"), date) + "."
         + (ms > 99 ? ms : (ms > 9 ? ("0" + ms) : ("00" + ms)));
   }
 
@@ -269,7 +269,7 @@ public class ODateu {
    */
   public static final String parseDateyyyyMMddHHmmssms2(Date date) {
     long ms = date.getTime() % 1000;
-    return ODateu.parseDateyyyyMMddHHmmss2(date) + (ms > 99 ? ms
+    return DateUtil.parseDateyyyyMMddHHmmss2(date) + (ms > 99 ? ms
         : (ms > 9 ? ("0" + ms) : ("00" + ms)));
   }
 
@@ -462,7 +462,7 @@ public class ODateu {
    * 获取当前系统时区.
    */
   public static final int getTimezone() {
-    return (int) (ODateu.tz.getRawOffset() / ODateu.HOUR);
+    return (int) (DateUtil.tz.getRawOffset() / DateUtil.HOUR);
   }
 
   /**
@@ -470,7 +470,7 @@ public class ODateu {
    */
   public static final long changeLocalTimeZone(long ts /* 本地时间, 毫秒. */,
       int gmt /* 指定时区偏移, 小时 . */) {
-    return (ts - ODateu.tz.getRawOffset() /* 回归零时区. */) + (gmt * ODateu.HOUR);
+    return (ts - DateUtil.tz.getRawOffset() /* 回归零时区. */) + (gmt * DateUtil.HOUR);
   }
 
   /**
@@ -478,28 +478,28 @@ public class ODateu {
    */
   public static final Date changeLocalTimeZone2date(long ts /* 本地时间, 毫秒. */,
       int gmt /* 指定时区偏移, 小时 . */) {
-    return new Date(ODateu.changeLocalTimeZone(ts, gmt));
+    return new Date(DateUtil.changeLocalTimeZone(ts, gmt));
   }
 
   /**
    * 返回当前时间在零时区的绝对时间.
    */
   public static final Date nowGmt0() {
-    return new Date(System.currentTimeMillis() - ODateu.tz.getRawOffset() /* 回归零时区. */);
+    return new Date(System.currentTimeMillis() - DateUtil.tz.getRawOffset() /* 回归零时区. */);
   }
 
   /**
    * 将指定GM+0时间回归到GMT+x.
    */
   public static final Date gotoGmtxOld(Date date /* 具有gmt0时区的绝对时间. */, int gmt /* 要返回的时区. */) {
-    return new Date(date.getTime() + gmt * ODateu.HOUR);
+    return new Date(date.getTime() + gmt * DateUtil.HOUR);
   }
 
   /**
    * 将指定时间回归到GMT+0.
    */
   public static final Date gotoGmt0Old(Date date /* 具有gmt时区的绝对时间. */, int gmt /* date的时区. */) {
-    return new Date((date.getTime() - gmt * ODateu.HOUR));
+    return new Date((date.getTime() - gmt * DateUtil.HOUR));
   }
 
   /**
@@ -507,44 +507,44 @@ public class ODateu {
    */
   public static final Date gotoGmtx(long ts /* 本时绝对时间. */, int gmtSec /* 要返回的时区(秒) */) {
     return new Date(
-        (ts - ODateu.tz.getRawOffset() /* 去零时区. */) + (gmtSec * ODateu.SECOND /* 去目标时区. */));
+        (ts - DateUtil.tz.getRawOffset() /* 去零时区. */) + (gmtSec * DateUtil.SECOND /* 去目标时区. */));
   }
 
   /**
    * 将指定GMT+x时间回归到GMT+0.
    */
   public static final Date gmtxGoto0(Date date /* 具有gmtSec时区的绝对时间. */, int gmtSec /* date的时区. */) {
-    return new Date((date.getTime() - gmtSec * ODateu.SECOND));
+    return new Date((date.getTime() - gmtSec * DateUtil.SECOND));
   }
 
   /**
    * 将指定GM+0时间回归到GMT+x.
    */
   public static final Date gmt0Gotox(Date date /* 具有gmt0时区的绝对时间. */, int gmtSec /* 要返回的时区(秒). */) {
-    return new Date(date.getTime() + gmtSec * ODateu.SECOND);
+    return new Date(date.getTime() + gmtSec * DateUtil.SECOND);
   }
 
   /**
    * 本地时间去零时区.
    */
   public static final Date gotoGmt0(Date date /* 具有本地时区的时间 */) {
-    return new Date(date.getTime() - ODateu.tz.getRawOffset());
+    return new Date(date.getTime() - DateUtil.tz.getRawOffset());
   }
 
   /**
    * 零时区时间去本地时区.
    */
   public static final Date gotoLocal(Date date/* 具有0时区的时间. */) {
-    return new Date(date.getTime() + ODateu.tz.getRawOffset());
+    return new Date(date.getTime() + DateUtil.tz.getRawOffset());
   }
 
   /**
    * 判断两个日期是否在同一天.
    */
   public static final boolean isSameDay(Date arg0, Date arg1) {
-    return (ODateu.yearInt(arg0) == ODateu.yearInt(arg1)) && //
-        (ODateu.monthInt(arg0) == ODateu.monthInt(arg1)) && //
-        (ODateu.dayInt(arg0) == ODateu.dayInt(arg1));
+    return (DateUtil.yearInt(arg0) == DateUtil.yearInt(arg1)) && //
+        (DateUtil.monthInt(arg0) == DateUtil.monthInt(arg1)) && //
+        (DateUtil.dayInt(arg0) == DateUtil.dayInt(arg1));
   }
 
   /**
@@ -561,32 +561,32 @@ public class ODateu {
    * 时间滚动, 按秒钟, up == true向今后滚动, 否则向以前滚动.
    */
   public static final Date dateRollOfSecond(Date date, int amount, boolean up) {
-    return up ? new Date(date.getTime() + ((long) amount) * ODateu.SECOND)
-        : new Date(date.getTime() - ((long) amount) * ODateu.SECOND);
+    return up ? new Date(date.getTime() + ((long) amount) * DateUtil.SECOND)
+        : new Date(date.getTime() - ((long) amount) * DateUtil.SECOND);
   }
 
   /**
    * 时间滚动, 按分钟, up == true向今后滚动, 否则向以前滚动.
    */
   public static final Date dateRollOfMinute(Date date, int amount, boolean up) {
-    return up ? new Date(date.getTime() + ((long) amount) * ODateu.MINUTE)
-        : new Date(date.getTime() - ((long) amount) * ODateu.MINUTE);
+    return up ? new Date(date.getTime() + ((long) amount) * DateUtil.MINUTE)
+        : new Date(date.getTime() - ((long) amount) * DateUtil.MINUTE);
   }
 
   /**
    * 时间滚动, 按小时, up == true向今后滚动, 否则向以前滚动.
    */
   public static final Date dateRollOfHour(Date date, int amount, boolean up) {
-    return up ? new Date(date.getTime() + ((long) amount) * ODateu.HOUR)
-        : new Date(date.getTime() - ((long) amount) * ODateu.HOUR);
+    return up ? new Date(date.getTime() + ((long) amount) * DateUtil.HOUR)
+        : new Date(date.getTime() - ((long) amount) * DateUtil.HOUR);
   }
 
   /**
    * 时间滚动, 按天, up == true向今后滚动, 否则向以前滚动.
    */
   public static final Date dateRollOfDay(Date date, int amount, boolean up) {
-    return up ? new Date(date.getTime() + ((long) amount) * ODateu.DAY)
-        : new Date(date.getTime() - ((long) amount) * ODateu.DAY);
+    return up ? new Date(date.getTime() + ((long) amount) * DateUtil.DAY)
+        : new Date(date.getTime() - ((long) amount) * DateUtil.DAY);
   }
 
   /**
@@ -596,7 +596,7 @@ public class ODateu {
     Calendar ca = Calendar.getInstance();
     ca.setTime(date);
     ca.roll(Calendar.MONTH, up);
-    int m = ODateu.monthInt(date);
+    int m = DateUtil.monthInt(date);
     if (m == 1 && !up) {
       ca.roll(Calendar.YEAR, false);
     }
@@ -620,14 +620,14 @@ public class ODateu {
    * 清除分钟.
    */
   public static final Date clearMinute(Date date) {
-    return new Date(date.getTime() - (date.getTime() % ODateu.HOUR));
+    return new Date(date.getTime() - (date.getTime() % DateUtil.HOUR));
   }
 
   /**
    * 清除小时.
    */
   public static final Date clearHour(Date date) {
-    return ODateu.set000000(date);
+    return DateUtil.set000000(date);
   }
 
   /**

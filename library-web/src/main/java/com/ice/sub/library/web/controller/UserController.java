@@ -1,6 +1,6 @@
 package com.ice.sub.library.web.controller;
 
-import com.ice.brother.house.ODateu;
+import com.ice.brother.house.DateUtil;
 import com.ice.sub.library.web.core.Rsp;
 import com.ice.sub.library.web.core.Rsp.RspEnum;
 import com.ice.sub.library.web.entities.UserInfo;
@@ -40,7 +40,7 @@ public class UserController {
       return Rsp.transEnd(RspEnum.ERR_ACCOUNT_EXSITS_ERROR);
     }
     Date now = new Date();
-    String time = ODateu.parseDateyyyyMMddHHmmssms2(now);
+    String time = DateUtil.parseDateyyyyMMddHHmmssms2(now);
     userInfo.setUserId(Long.parseLong(time));
     userInfo.setCreateTime(now);
     userInfo.setStatus((byte) 0);

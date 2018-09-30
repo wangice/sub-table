@@ -1,16 +1,17 @@
 package com.ice.sub.library.web.service.impl;
 
+import com.ice.sub.library.web.constants.RedisConstant;
 import com.ice.sub.library.web.dao.mybatis.UserInfoDao;
-import com.ice.sub.library.web.dao.proxy.BaseUserInfoProxyDao;
-import com.ice.sub.library.web.dao.proxy.ExtraUserInfoProxyDao;
-import com.ice.sub.library.web.entities.BaseUserInfo;
-import com.ice.sub.library.web.entities.ExtraUserInfo;
 import com.ice.sub.library.web.entities.UserInfo;
 import com.ice.sub.library.web.service.UserInfoService;
+import com.ice.sub.library.web.service.redis.UserRedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
+ * 1.缓存穿透：
+ *
+ *
  * @author:ice
  * @Date: 2018/9/10 20:11
  */
@@ -21,41 +22,52 @@ public class UserInfoServiceImpl implements UserInfoService {
   private UserInfoDao userInfoDao;
 
   @Autowired
-  private BaseUserInfoProxyDao baseUserInfoProxyDao;
-
-  @Autowired
-  private ExtraUserInfoProxyDao extraUserInfoProxyDao;
-
-
+  private UserRedisService userRedisService;
 
   @Override
   public int saveUserInfo(UserInfo userInfo) {
     userInfoDao.insertUserInfo(userInfo);
-    BaseUserInfo baseUserInfo = new BaseUserInfo(userInfo);
-    ExtraUserInfo extraUserInfo = new ExtraUserInfo(userInfo);
-    baseUserInfoProxyDao.insertBaseUserInfo(baseUserInfo);
-    extraUserInfoProxyDao.insertExtraUserInfo(extraUserInfo);
     return 1;
   }
 
   @Override
   public UserInfo selectUser(UserInfo userInfo) {
-    UserInfo user = userInfoDao.selectUserInfo(userInfo);
+    UserInfo user = userRedisService.get(userInfo.getUserId() + "");
+    if (user == null) {//没有命中，数据库汇总查询
+      user = userInfoDao.selectUserInfo(userInfo);
+      if (user != null) {//数据库有值的情况下
+        userRedisService.put(userInfo.getUserId() + "", userInfo, RedisConstant.OBJECT_EXPIRE_TIME);
+      } else {//TODO: 没值的情况下,设置一个空值，并设置五分钟过期时间，防止某一时间大量并发访问，击穿数据库
+
+      }
+    }
     return user;
   }
 
   @Override
   public int deleteUser(UserInfo userInfo) {
-    return userInfoDao.delete(userInfo);
+    int success = userInfoDao.delete(userInfo);
+    if (success > 0) {//删除成功
+      userRedisService.remove(userInfo.getUserId() + "");
+    }
+    return 1;
   }
 
   @Override
   public int updateUserInfo(UserInfo userInfo) {
-    return userInfoDao.update(userInfo);
+    int success = userInfoDao.update(userInfo);//更新数据库
+    if (success > 0) {
+      userRedisService.remove(userInfo.getUserId() + "");//让缓存失效
+    }
+    return 1;
   }
 
   @Override
   public int updateUserInfoStatus(UserInfo userInfo) {
-    return userInfoDao.updateStatus(userInfo);
+    int success = userInfoDao.updateStatus(userInfo);
+    if (success > 0) {
+      userRedisService.remove(userInfo.getUserId() + "");//让缓存失效
+    }
+    return 1;
   }
 }
