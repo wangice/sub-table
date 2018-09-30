@@ -4,7 +4,7 @@
 <mapper namespace="com.ice.sub.library.web.dao.mybatis.UserInfoDao">
 
   <!--auto generated Code-->
-  <resultMap id="AllColumnMap" type="com.ice.sub.library.web.entities.ExtraUserInfo">
+  <resultMap id="AllColumnMap" type="com.ice.sub.library.web.entities.UserInfo">
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -157,7 +157,7 @@
     </delete>
 
   <!--通过userId查询用户-->
-  <select id="selectUserInfo" parameterType="com.ice.sub.library.web.entities.ExtraUserInfo"
+  <select id="selectUserInfo" parameterType="com.ice.sub.library.web.entities.UserInfo"
     resultMap="AllColumnMap">
     select
     <include refid="Base_Column_List"/>
@@ -166,7 +166,7 @@
   </select>
 
   <!--更新用户状态-->
-  <update id="updateStatus" parameterType="com.ice.sub.library.web.entities.ExtraUserInfo">
+  <update id="updateStatus" parameterType="com.ice.sub.library.web.entities.UserInfo">
      update tb_user set status = #{status}
      where user_id = #{userId}
   </update>
