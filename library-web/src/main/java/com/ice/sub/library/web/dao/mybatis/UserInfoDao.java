@@ -1,6 +1,6 @@
-package com.ice.sub.library.migrate.dao.mybatis;
+package com.ice.sub.library.web.dao.mybatis;
 
-import com.ice.sub.library.migrate.entities.UserInfo;
+import com.ice.sub.library.web.entities.UserInfo;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserInfoDao {

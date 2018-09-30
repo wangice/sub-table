@@ -1,12 +1,12 @@
-package com.ice.sub.library.migrate.service.impl;
+package com.ice.sub.library.web.service.impl;
 
-import com.ice.sub.library.migrate.dao.mybatis.UserInfoDao;
-import com.ice.sub.library.migrate.dao.proxy.BaseUserInfoProxyDao;
-import com.ice.sub.library.migrate.dao.proxy.ExtraUserInfoProxyDao;
-import com.ice.sub.library.migrate.entities.BaseUserInfo;
-import com.ice.sub.library.migrate.entities.ExtraUserInfo;
-import com.ice.sub.library.migrate.entities.UserInfo;
-import com.ice.sub.library.migrate.service.UserInfoService;
+import com.ice.sub.library.web.dao.mybatis.UserInfoDao;
+import com.ice.sub.library.web.dao.proxy.BaseUserInfoProxyDao;
+import com.ice.sub.library.web.dao.proxy.ExtraUserInfoProxyDao;
+import com.ice.sub.library.web.entities.BaseUserInfo;
+import com.ice.sub.library.web.entities.ExtraUserInfo;
+import com.ice.sub.library.web.entities.UserInfo;
+import com.ice.sub.library.web.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +25,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 
   @Autowired
   private ExtraUserInfoProxyDao extraUserInfoProxyDao;
+
+
 
   @Override
   public int saveUserInfo(UserInfo userInfo) {

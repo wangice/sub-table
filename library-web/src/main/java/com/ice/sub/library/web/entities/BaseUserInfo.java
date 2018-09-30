@@ -1,4 +1,4 @@
-package com.ice.sub.library.migrate.entities;
+package com.ice.sub.library.web.entities;
 
 import java.util.Date;
 

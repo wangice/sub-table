@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ice.sub.library.com.ice.sub.library.migrate.table.table.dao.mybatis.UserInfoDao">
+<mapper namespace="com.ice.sub.library.web.dao.mybatis.UserInfoDao">
 
   <!--auto generated Code-->
-  <resultMap id="AllColumnMap" type="com.ice.sub.library.com.ice.sub.library.migrate.table.table.entities.UserInfo">
+  <resultMap id="AllColumnMap" type="com.ice.sub.library.web.entities.ExtraUserInfo">
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -157,7 +157,7 @@
     </delete>
 
   <!--通过userId查询用户-->
-  <select id="selectUserInfo" parameterType="com.ice.sub.library.com.ice.sub.library.migrate.table.table.entities.UserInfo"
+  <select id="selectUserInfo" parameterType="com.ice.sub.library.web.entities.ExtraUserInfo"
     resultMap="AllColumnMap">
     select
     <include refid="Base_Column_List"/>
@@ -166,7 +166,7 @@
   </select>
 
   <!--更新用户状态-->
-  <update id="updateStatus" parameterType="com.ice.sub.library.com.ice.sub.library.migrate.table.table.entities.UserInfo">
+  <update id="updateStatus" parameterType="com.ice.sub.library.web.entities.ExtraUserInfo">
      update tb_user set status = #{status}
      where user_id = #{userId}
   </update>

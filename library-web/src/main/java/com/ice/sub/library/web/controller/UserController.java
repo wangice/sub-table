@@ -1,11 +1,11 @@
-package com.ice.sub.library.migrate.controller;
+package com.ice.sub.library.web.controller;
 
 import com.ice.brother.house.ODateu;
-import com.ice.sub.library.migrate.core.Rsp;
-import com.ice.sub.library.migrate.core.Rsp.RspEnum;
-import com.ice.sub.library.migrate.entities.UserInfo;
-import com.ice.sub.library.migrate.rsp.RspUserInfo;
-import com.ice.sub.library.migrate.service.UserInfoService;
+import com.ice.sub.library.web.core.Rsp;
+import com.ice.sub.library.web.core.Rsp.RspEnum;
+import com.ice.sub.library.web.entities.UserInfo;
+import com.ice.sub.library.web.rsp.RspUserInfo;
+import com.ice.sub.library.web.service.UserInfoService;
 import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;

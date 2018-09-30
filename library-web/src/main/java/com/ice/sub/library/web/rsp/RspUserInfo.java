@@ -1,6 +1,6 @@
-package com.ice.sub.library.migrate.rsp;
+package com.ice.sub.library.web.rsp;
 
-import com.ice.sub.library.migrate.entities.UserInfo;
+import com.ice.sub.library.web.entities.UserInfo;
 
 /**
  * @author:ice

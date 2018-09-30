@@ -1,4 +1,4 @@
-package com.ice.sub.library.migrate.configuration;
+package com.ice.sub.library.web.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

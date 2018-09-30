@@ -1,4 +1,4 @@
-package com.ice.sub.library.migrate;
+package com.ice.sub.library.web;
 
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
 import org.springframework.boot.SpringApplication;

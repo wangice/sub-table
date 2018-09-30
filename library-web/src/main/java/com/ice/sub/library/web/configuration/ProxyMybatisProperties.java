@@ -1,17 +1,17 @@
-package com.ice.sub.library.migrate.configuration;
+package com.ice.sub.library.web.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author:ice
- * @Date: 2018/6/15 17:11
+ * @author ice
+ * @Date 2018/9/15 16:00
  */
 @Configuration
-@ConfigurationProperties(prefix = MybatisProperties.PREFIX)
-public class MybatisProperties {
+@ConfigurationProperties(prefix = ProxyMybatisProperties.PREFIX)
+public class ProxyMybatisProperties {
 
-  public static final String PREFIX = "bos.datasource";
+  public static final String PREFIX = "proxy.datasource";
 
   private String url;
   private String username;

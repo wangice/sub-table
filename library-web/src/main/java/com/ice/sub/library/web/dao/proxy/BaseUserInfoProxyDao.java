@@ -1,6 +1,6 @@
-package com.ice.sub.library.migrate.dao.proxy;
+package com.ice.sub.library.web.dao.proxy;
 
-import com.ice.sub.library.migrate.entities.BaseUserInfo;
+import com.ice.sub.library.web.entities.BaseUserInfo;
 
 /**
  * @author ice

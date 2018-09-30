@@ -27,8 +27,6 @@ target/
 #私有文件
 *203.properties
 *203.xml
-*me.properties
-*me.xml
 
 # system ignore
 .DS_Store

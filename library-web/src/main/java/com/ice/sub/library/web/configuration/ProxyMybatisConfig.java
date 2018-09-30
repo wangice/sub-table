@@ -1,4 +1,4 @@
-package com.ice.sub.library.migrate.configuration;
+package com.ice.sub.library.web.configuration;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import java.sql.SQLException;
@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -21,31 +22,30 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @author:ice
- * @Date: 2018/6/8 15:04
+ * @author ice
+ * @Date 2018/9/15 16:22
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages = "com.ice.sub.library.com.ice.sub.library.table.table.dao.mybatis", sqlSessionTemplateRef = "sqlSessionTemplate")
-public class MyBatisConfig {
+@MapperScan(basePackages = "com.ice.sub.library.web.dao.proxy", sqlSessionTemplateRef = "proxySqlSessionTemplate")
+public class ProxyMybatisConfig {
 
   private static final Logger logger = LoggerFactory.getLogger(MyBatisConfig.class);
-
-
   @Autowired
-  private MybatisProperties bosMybatisProperties;
+  private ProxyMybatisProperties proxyMybatisProperties;
 
   @Autowired
   private DataSourceProperties properties;
 
-  @Bean("dataSource")
-  public DataSource bosDataSource() {
+  @Primary
+  @Bean("proxyDataSource")
+  public DataSource proxyDataSource() {
     DruidDataSource ds = new DruidDataSource();
-    logger.debug("DruidDataSource开始连接数据源...");
+    logger.debug("DruidDataSource开始连接数据源 proxy...");
     ds.setDriverClassName(this.properties.getDriverClassName());
-    ds.setUrl(bosMybatisProperties.getUrl());
-    ds.setUsername(bosMybatisProperties.getUsername());
-    ds.setPassword(bosMybatisProperties.getPassword());
+    ds.setUrl(proxyMybatisProperties.getUrl());
+    ds.setUsername(proxyMybatisProperties.getUsername());
+    ds.setPassword(proxyMybatisProperties.getPassword());
     ds.setMaxActive(this.properties.getMaxActive());
     ds.setMaxWait(this.properties.getMaxWait());
     ds.setInitialSize(this.properties.getInitialSize());
@@ -65,9 +65,9 @@ public class MyBatisConfig {
     return ds;
   }
 
-
-  @Bean(name = "sqlSessionFactory")
-  public SqlSessionFactory sqlSessionFactory(@Qualifier("dataSource") DataSource bosDataSource)
+  @Primary
+  @Bean(name = "proxySqlSessionFactory")
+  public SqlSessionFactory sqlSessionFactory(@Qualifier("proxyDataSource") DataSource bosDataSource)
       throws Exception {
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
     sqlSessionFactoryBean.setDataSource(bosDataSource);
@@ -87,15 +87,17 @@ public class MyBatisConfig {
     }
   }
 
-  @Bean(name = "sqlSessionTemplate")
+  @Primary
+  @Bean(name = "proxySqlSessionTemplate")
   public SqlSessionTemplate sqlSessionTemplate(
-      @Qualifier("sqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
+      @Qualifier("proxySqlSessionFactory") SqlSessionFactory sqlSessionFactory) {
     return new SqlSessionTemplate(sqlSessionFactory);
   }
 
+  @Primary
   @Bean(name = "annotationDrivenTransactionManager")
   public PlatformTransactionManager annotationDrivenTransactionManager(
-      @Qualifier("dataSource") DataSource bosDataSource) {
+      @Qualifier("proxyDataSource") DataSource bosDataSource) {
     return new DataSourceTransactionManager(bosDataSource);
   }
 }
