@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 /**
  * 1.缓存穿透：
  *
- *
  * @author:ice
  * @Date: 2018/9/10 20:11
  */
@@ -36,10 +35,13 @@ public class UserInfoServiceImpl implements UserInfoService {
     if (user == null) {//没有命中，数据库汇总查询
       user = userInfoDao.selectUserInfo(userInfo);
       if (user != null) {//数据库有值的情况下
-        userRedisService.put(userInfo.getUserId() + "", userInfo, RedisConstant.OBJECT_EXPIRE_TIME);
+        userRedisService.put(userInfo.getUserId() + "", user, RedisConstant.OBJECT_EXPIRE_TIME);
       } else {//TODO: 没值的情况下,设置一个空值，并设置五分钟过期时间，防止某一时间大量并发访问，击穿数据库
-
+        userRedisService.put(userInfo.getUserId() + "", userInfo, RedisConstant.NULL_EXPIRE_TIME);
       }
+    }
+    if (user != null && user.getUserId() != null && user.getAccount() == null) {//表示该值时空值
+      user = null;
     }
     return user;
   }
