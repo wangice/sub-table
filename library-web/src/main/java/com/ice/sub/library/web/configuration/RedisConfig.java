@@ -78,8 +78,8 @@ public class RedisConfig {
    * 实例化 ValueOperations 对象,可以使用 String 操作
    */
   @Bean
-  public ValueOperations<String, String> valueOperations(
-      RedisTemplate<String, String> redisTemplate) {
+  public ValueOperations<String, Object> valueOperations(
+      RedisTemplate<String, Object> redisTemplate) {
     return redisTemplate.opsForValue();
   }
 

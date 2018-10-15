@@ -50,9 +50,9 @@ public class UserInfoServiceImpl implements UserInfoService {
   public int deleteUser(UserInfo userInfo) {
     int success = userInfoDao.delete(userInfo);
     if (success > 0) {//删除成功
-      userRedisService.remove(userInfo.getUserId() + "");
+      userRedisService.remove(userInfo.getUserId() + "");//让缓存失效
     }
-    return 1;
+    return success;
   }
 
   @Override
@@ -61,7 +61,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     if (success > 0) {
       userRedisService.remove(userInfo.getUserId() + "");//让缓存失效
     }
-    return 1;
+    return success;
   }
 
   @Override
@@ -70,6 +70,6 @@ public class UserInfoServiceImpl implements UserInfoService {
     if (success > 0) {
       userRedisService.remove(userInfo.getUserId() + "");//让缓存失效
     }
-    return 1;
+    return success;
   }
 }
