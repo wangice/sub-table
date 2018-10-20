@@ -14,6 +14,7 @@
     <module>operator-mq</module>
     <module>sql-migrate</module>
     <module>sql-check</module>
+    <module>distributed-transaction</module>
   </modules>
 
   <properties>
